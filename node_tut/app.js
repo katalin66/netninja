@@ -1,6 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const mongoose = require("mongoose");
+require('dotenv').config();
 
 const { render } = require("ejs");
 
@@ -11,7 +12,10 @@ const app = express();
 
 //connect mongodb
 const dbURI =
-  "mongodb+srv://mySelf:mySelf2513@cluster0.t0an1.mongodb.net/node-tuts?retryWrites=true&w=majority";
+  // "mongodb+srv://mySelf:mySelf2513@cluster0.t0an1.mongodb.net/node-tuts?retryWrites=true&w=majority";
+  `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@cluster0.t0an1.mongodb.net/node-tuts?retryWrites=true&w=majority`;
+// const dbURI = process.env.DB_URI;
+
 mongoose
   .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
   .then((result) => app.listen(3000))
