@@ -1,0 +1,43 @@
+body {
+  background: #eee;
+  font-family: Roboto;
+}
+h1 {
+  text-align: center;
+  color: crimson;
+}
+nav ul {
+  text-align: center;
+  padding: 0;
+  margin: 30px auto;
+}
+nav li {
+  display: inline-block;
+  margin: 0 10px;
+}
+nav a {
+  color: #777;
+  text-decoration: none;
+  padding: 6px 14px;
+  background: #fff;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgba(100, 100, 100,0.1);
+}
+nav a.active {
+  border-left: 4px solid crimson;
+}
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.container article {
+  background: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 1px 1px 3px rgba(100, 100, 100,0.1);
+  color: #444;
+}
+.container h2 {
+  text-align: center;
+}
