@@ -2,6 +2,12 @@ GET http://localhost:3000/signup
 
 ###
 POST http://localhost:3000/signup
+content-type: application/json
+
+{
+  "email":"papa@gmail.com",
+  "password" : "test123"
+}
 
 ###
 GET http://localhost:3000/login
