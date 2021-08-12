@@ -9,25 +9,45 @@ import ListItemText from '@material-ui/core/ListItemText';
 import SubjectOutlinedIcon from '@material-ui/icons/SubjectOutlined';
 import AddCircleOutlineOutlinedIcon from '@material-ui/icons/AddCircleOutlineOutlined';
 import { useHistory, useLocation } from 'react-router-dom';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { format } from 'date-fns';
+import Avatar from '@material-ui/core/Avatar';
 
 const drawerWidth = 240
 
-const useStyles = makeStyles({
-  page: {
-    backgroundColor: '#f9f9f9',
-    width: '100%'
-  },
-  drawer: {
-    width: drawerWidth
-  },
-  drawerPaper: {
-    width: drawerWidth
-  },
-  root: {
-    display: "flex"
-  },
-  active: {
-    backgroundColor: '#f4f4f4'
+const useStyles = makeStyles((theme) => {
+  return {
+    page: {
+      backgroundColor: '#f9f9f9',
+      width: '100%',
+      padding: theme.spacing(3)
+    },
+    drawer: {
+      width: drawerWidth
+    },
+    drawerPaper: {
+      width: drawerWidth
+    },
+    root: {
+      display: "flex"
+    },
+    active: {
+      backgroundColor: '#f4f4f4'
+    },
+    title: {
+      padding: theme.spacing(2)
+    },
+    appbar: {
+      width: `calc(100% - ${drawerWidth}px)`
+    },
+    toolbar: theme.mixins.toolbar,
+    date: {
+      flexGrow: 1  // => avatar goes right
+    },
+    avatar: {
+      marginLeft: theme.spacing(2)
+    }
   }
 })
 
@@ -52,16 +72,29 @@ function Layout({ children }) {
   return (
     <div className={classes.root}>
       {/* app bar */}
-
+      <AppBar
+        className={classes.appbar}
+        elevation={0}
+      >
+        <Toolbar>
+          <Typography className={classes.date}>
+            Today is the {format(new Date(), 'do MMMM Y')}
+          </Typography>
+          <Typography>
+            Mario
+          </Typography>
+          <Avatar src="/mario-av.png" className={classes.avatar} />
+        </Toolbar>
+      </AppBar>
       {/* side drawer */}
       <Drawer
         className={classes.drawer}
         variant="permanent"
         anchor="left"
-        classes={{paper: classes.drawerPaper}} // overwrite the CSS
+        classes={{ paper: classes.drawerPaper }} // overwrite the CSS
       >
         <div>
-          <Typography variant="h5">
+          <Typography variant="h5" className={classes.title}>
             Ninja Notes
           </Typography>
         </div>
@@ -82,8 +115,9 @@ function Layout({ children }) {
           ))}
         </List>
       </Drawer>
-      
+
       <div className={classes.page}>
+        <div className={classes.toolbar}></div>
         {children}
       </div>
     </div>
